@@ -2,10 +2,9 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { TaskStatus } from './task.models';
 import { CreateTaskDto } from './dto/create-task-dto';
 import { GetTasksFilterDto } from './dto/get-task-filter.dto';
-import { TasksRepository } from './tasks.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Task } from './task.entity';
-import { DeleteResult, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class TasksService {
@@ -49,26 +48,6 @@ export class TasksService {
 
     return deletedTask;
   }
-
-  // getAllTask(): Task[] {
-  //   return this.tasks;
-  // }
-  // getTasksWithFilter(filterDto: GetTasksFilterDto) {
-  //   const { status, search } = filterDto;
-  //   let tasks = this.getAllTask();
-  //   if (status) {
-  //     tasks = tasks.filter((task) => task.status === status);
-  //   }
-  //   if (search) {
-  //     tasks = tasks.filter((task) => {
-  //       if (task.title.includes(search) || task.description.includes(search)) {
-  //         return true;
-  //       }
-  //       return false;
-  //     });
-  //   }
-  //   return tasks;
-  // }
 
   async getTasks(filterDto: GetTasksFilterDto): Promise<Task[]> {
     const { status, search } = filterDto;
