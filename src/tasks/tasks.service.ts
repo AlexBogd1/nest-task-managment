@@ -18,7 +18,7 @@ export class TasksService {
     @InjectRepository(Task)
     private taskRepository: Repository<Task>,
   ) {}
-  private logger = new Logger('TaskService', true);
+  private logger = new Logger('TaskService');
 
   async getTaskById(taskId: string, user: User): Promise<Task> {
     const task = await this.taskRepository.findOne({
